@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - Calculador de Combinaciones</title>
+
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Ejercicio 2: Calculador de Combinaciones</h1>
+
+       
+    </div>
+
+    <script>
+        function miFactorial(num) {
+            var f = 1;
+            for (var i = 2; i <= num; i++) {
+                f = f * i;
+            }
+            return f;
+        }
+
+        function calcularCombinaciones() {
+            var n1 = parseInt(document.getElementById('n1').value);
+            var r1 = parseInt(document.getElementById('r1').value);
+            var n2 = parseInt(document.getElementById('n2').value);
+            var r2 = parseInt(document.getElementById('r2').value);
+            
+            var div = document.getElementById('res-comb');
+            div.style.display = "block";
+
+            if (r1 > n1 || r2 > n2) {
+                div.innerHTML = "Error: 'r' no puede ser mayor que 'n'";
+                div.style.background = "#fef2f2";
+                div.style.borderColor = "#fca5a5";
+                return;
+            }
+
+            var comb1 = miFactorial(n1) / (miFactorial(r1) * miFactorial(n1 - r1));
+            var comb2 = miFactorial(n2) / (miFactorial(r2) * miFactorial(n2 - r2));
+            var total = comb1 * comb2;
+            
+            div.style.background = "#f0fdf4";
+            div.style.borderColor = "#bbf7d0";
+            div.innerHTML = "Combinaciones Grupo 1: " + comb1 + "<br>" +
+                            "Combinaciones Grupo 2: " + comb2 + "<br>" +
+                            "Total Sorteo: " + total;
+        }
+    </script>
+</body>
+</html>

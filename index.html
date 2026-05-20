@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Simulador de Transferencia de Calor</title>
+
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Ejercicio 1: Simulador de Transferencia de Calor</h1>
+
+        <div class="tarjeta">
+            
+            <p class="formula">T = Ts + (T0 - Ts) * e^(-k * t)</p>
+            
+            <form onsubmit="event.preventDefault(); calcularCalor();">
+                <div class="campo">
+                    <label>Temperatura Inicial (T0):</label>
+                    <input type="number" id="t0" value="120" step="any" required>
+                </div>
+                <div class="campo">
+                    <label>Temperatura Entorno (Ts):</label>
+                    <input type="number" id="ts" value="38" step="any" required>
+                </div>
+                <div class="campo">
+                    <label>Constante (k):</label>
+                    <input type="number" id="k" value="0.45" step="any" required>
+                </div>
+                <div class="campo">
+                    <label>Tiempo en horas (t):</label>
+                    <input type="number" id="t_tiempo" value="3" step="any" required>
+                </div>
+                <button type="submit">Calcular</button>
+            </form>
+            
+            <div id="res-calor" class="resultado-caja" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        function calcularCalor() {
+            var t0 = parseFloat(document.getElementById('t0').value);
+            var ts = parseFloat(document.getElementById('ts').value);
+            var k = parseFloat(document.getElementById('k').value);
+            var t = parseFloat(document.getElementById('t_tiempo').value);
+            
+            var resultado = ts + (t0 - ts) * Math.exp(-k * t);
+            var redondeado = Math.round(resultado);
+            
+            var div = document.getElementById('res-calor');
+            div.style.display = "block";
+            div.innerHTML = "Temperatura Final: " + redondeado + "°C";
+        }
+    </script>
+</body>
+</html>
